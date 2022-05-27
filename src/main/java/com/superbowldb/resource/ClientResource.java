@@ -15,7 +15,6 @@ import com.superbowldb.service.ClientService;
 @RequestMapping("/api")
 public class ClientResource {
 	
-	
 	private final ClientService clientService;
 	
 	@Autowired
@@ -26,11 +25,12 @@ public class ClientResource {
 	/*
 	 ******** Routes********
 	*/
-	
+	/** route for all super bowls */
 	@GetMapping("/superbowls")
 	List<Superbowl> all(){
 		return clientService.allSuperbowls();
 	}
+	
 	
 	@GetMapping("/superbowl/{id}")
 	Superbowl single(@PathVariable int id) {

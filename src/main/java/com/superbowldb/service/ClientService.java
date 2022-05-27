@@ -9,6 +9,7 @@ import com.superbowldb.exception.SuperbowlNotFoundException;
 import com.superbowldb.model.Superbowl;
 import com.superbowldb.repository.SuperbowlRepository;
 
+
 @Service
 public class ClientService {
 	private final SuperbowlRepository superbowlRepository;
@@ -18,12 +19,13 @@ public class ClientService {
 		this.superbowlRepository = superbowlRepository;
 	}
 	
-	public List<Superbowl> allSuperbowls(){
-		return superbowlRepository.findAll();
-	}
 	
 	public Superbowl singleSuperbowl(int id) {
 		return superbowlRepository.findById(id)
 				.orElseThrow(() -> new SuperbowlNotFoundException(id));
+	}
+	
+	public List<Superbowl> allSuperbowls(){
+		return superbowlRepository.findAll();
 	}
 }
