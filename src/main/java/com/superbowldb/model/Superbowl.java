@@ -2,8 +2,10 @@ package com.superbowldb.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="tbl_superbowl")
 public class Superbowl {
 	
 	@Id

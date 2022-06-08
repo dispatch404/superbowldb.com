@@ -3,54 +3,48 @@ package com.superbowldb.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.superbowldb.model.Superbowl;
-import com.superbowldb.repository.SuperbowlRepository;
+import com.superbowldb.service.AdminService;
 
 @RestController
+@RequestMapping("/admin")
 public class AdminResource {
-	private final SuperbowlRepository superbowlRepository;
+	private final AdminService adminService;
 	
 	@Autowired
-	AdminResource(SuperbowlRepository superbowlRepository){
-		this.superbowlRepository = superbowlRepository;
+	AdminResource(AdminService adminService){
+		this.adminService = adminService;
+	}
+
+	/** 
+	 *     		 Routes 
+	 * 								**/
+	@PostMapping("/newRecords")
+	ResponseEntity<?> addRecords(@RequestBody List<Superbowl> superbowls) {
+		return adminService.insertRecords(superbowls);
 	}
 	
-	@PostMapping("/admin/newRecords")
-	String addRecords(@RequestBody List<Superbowl> superbowls) {
-		if(!superbowls.isEmpty()) {
-			superbowlRepository.saveAll(superbowls);
-			return "records successfully added";
-		}
-		else {
-			return "records insertion failed";
-		}
+	@PostMapping("/newRecord")
+	ResponseEntity<?> addRecord(@RequestBody Superbowl superbowl) {
+		return adminService.insertSingleRecord(superbowl);
 	}
 	
-	@PostMapping("/admin/newRecord")
-	String addRecord(@RequestBody Superbowl superbowl) {
-		if(superbowl != null) {
-			superbowlRepository.save(superbowl);
-			return "record successfully added";
-		}
-		else {
-			return "record insertion failed";
-		}
+	@PutMapping("/updateRecord")
+	ResponseEntity<?> updateRecord(@RequestBody Superbowl superbowl) {
+		return adminService.updateRecord(superbowl);
 	}
 	
-	@PutMapping("/admin/updateRecord/{id}")
-	String updateRecord(@RequestBody Superbowl superbowl, @PathVariable int id) {
-		return "";
+	@PostMapping("/deleteRecord/{id}")
+	ResponseEntity<?> deleteRecord(@PathVariable int id) {
+		return adminService.deleteRecord(id);
 	}
-	
-	@PostMapping("/admin/deleteRecord/{id}")
-	String deleteRecord(@PathVariable int id) {
-		return "";
-	}	
 	
 }

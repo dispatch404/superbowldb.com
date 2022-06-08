@@ -28,10 +28,10 @@ public class SecurityConfiguration{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
-                .antMatchers("/admin/**").hasAnyRole("ADMIN").anyRequest()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
             )
-            .csrf().disable()
-            .httpBasic(withDefaults());
+            .httpBasic(withDefaults())
+            .csrf().disable();
         return http.build();
     }
  
