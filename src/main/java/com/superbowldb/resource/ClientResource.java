@@ -34,7 +34,7 @@ public class ClientResource {
 		return clientService.singleSuperbowl(id);
 	}
 	
-	@GetMapping("/superbowl/{id}/date")
+	@GetMapping("/superbowl/date/{id}")
 	public ResponseEntity<?> date(@PathVariable int id) {
 		return clientService.getDate(id);
 	}

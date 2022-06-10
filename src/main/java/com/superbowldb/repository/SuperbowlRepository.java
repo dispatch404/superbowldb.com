@@ -8,5 +8,5 @@ import com.superbowldb.model.Superbowl;
 
 @Repository
 public interface SuperbowlRepository extends JpaRepository<Superbowl, Integer>{
-
+		
 } 

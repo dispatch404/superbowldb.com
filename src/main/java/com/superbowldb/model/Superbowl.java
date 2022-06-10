@@ -18,7 +18,7 @@ public class Superbowl {
 	private int winningPts;
 	private String qbLoser;
 	private String coachLoser;
-	private String Loser;
+	private String loser;
 	private int losingPts;
 	private String mvp;
 	private String stadium;
@@ -43,7 +43,7 @@ public class Superbowl {
 		this.winningPts = winningPts;
 		this.qbLoser = qbLoser;
 		this.coachLoser = coachLoser;
-		Loser = loser;
+		this.loser = loser;
 		this.losingPts = losingPts;
 		this.mvp = mvp;
 		this.stadium = stadium;
@@ -128,11 +128,11 @@ public class Superbowl {
 	}
 
 	public String getLoser() {
-		return Loser;
+		return loser;
 	}
 
 	public void setLoser(String loser) {
-		Loser = loser;
+		this.loser = loser;
 	}
 
 	public int getLosingPts() {
@@ -203,7 +203,7 @@ public class Superbowl {
 	public String toString() {
 		return "superbowls [sbNumber=" + sbNumber + ", date=" + date + ", attendance=" + attendance + ", qbWinner="
 				+ qbWinner + ", coachWinner=" + coachWinner + ", winner=" + winner + ", winningPts=" + winningPts
-				+ ", qbLoser=" + qbLoser + ", coachLoser=" + coachLoser + ", Loser=" + Loser + ", losingPts="
+				+ ", qbLoser=" + qbLoser + ", coachLoser=" + coachLoser + ", Loser=" + loser + ", losingPts="
 				+ losingPts + ", mvp=" + mvp + ", stadium=" + stadium + ", city=" + city + ", state=" + state
 				+ ", pointDifference=" + pointDifference + ", referee=" + referee + ", umpire=" + umpire + "]";
 	}
