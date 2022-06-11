@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+import com.superbowldb.model.DataViews;
 import com.superbowldb.model.Superbowl;
 import com.superbowldb.resource.ClientResource;
 
 @Component
 public class SuperbowlModelAssembler implements RepresentationModelAssembler<Superbowl, EntityModel<Superbowl>>{
+	
 
 	@Override
 	public EntityModel<Superbowl> toModel(Superbowl superbowl) {
@@ -27,45 +29,52 @@ public class SuperbowlModelAssembler implements RepresentationModelAssembler<Sup
 		EntityModel<?> modelEntity;
 		Link singleLink = linkTo(methodOn(ClientResource.class).single(superbowl.getSbNumber())).withRel("superbowl");
 		Link allLink = linkTo(methodOn(ClientResource.class).all()).withRel("superbowls");
-
+		
+		DataViews view = new DataViews();
 		
 		switch(route) {
 		case "getDate":
-			modelEntity = EntityModel.of(superbowl.getDate(),
+			DataViews.DateView dateView  = view.new DateView(superbowl.getDate());
+			modelEntity = EntityModel.of(dateView,
 					linkTo(methodOn(ClientResource.class).date(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getAttendance":
-			modelEntity = EntityModel.of(superbowl.getAttendance(),
+			DataViews.AttendanceView attendanceView  = view.new AttendanceView(superbowl.getAttendance());
+			modelEntity = EntityModel.of(attendanceView,
 					linkTo(methodOn(ClientResource.class).attendance(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getQbWinner":
-			modelEntity = EntityModel.of(superbowl.getQbWinner(),
+			DataViews.QbWinnerView qbWinnerView  = view.new QbWinnerView(superbowl.getQbWinner());
+			modelEntity = EntityModel.of(qbWinnerView,
 					linkTo(methodOn(ClientResource.class).qbWinner(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getCoachWinner":
-			modelEntity = EntityModel.of(superbowl.getCoachWinner(),
+			DataViews.CoachWinnerView coachWinnerView  = view.new CoachWinnerView(superbowl.getCoachWinner());
+			modelEntity = EntityModel.of(coachWinnerView,
 					linkTo(methodOn(ClientResource.class).coachWinner(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getWinner":
-			modelEntity = EntityModel.of(superbowl.getWinner(),
+			DataViews.WinnerView winnerView  = view.new WinnerView(superbowl.getWinner());
+			modelEntity = EntityModel.of(winnerView,
 					linkTo(methodOn(ClientResource.class).winner(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getWinningPoints":
+			DataViews.WinningPtsView winningPointsView  = view.new WinningPtsView(superbowl.getWinningPts());
 			modelEntity = EntityModel.of(superbowl.getWinningPts(),
 					linkTo(methodOn(ClientResource.class).winningPoints(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
@@ -73,84 +82,104 @@ public class SuperbowlModelAssembler implements RepresentationModelAssembler<Sup
 			break;
 			
 		case "getQbLoser":
-			modelEntity = EntityModel.of(superbowl.getQbLoser(),
+			DataViews.QbLoserView qbLoserView  = view.new QbLoserView(superbowl.getQbLoser());
+			modelEntity = EntityModel.of(qbLoserView,
 					linkTo(methodOn(ClientResource.class).qbLoser(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getCoachLoser":
-			modelEntity = EntityModel.of(superbowl.getCoachLoser(),
+			DataViews.CoachLoserView coachLoserView  = view.new CoachLoserView(superbowl.getCoachLoser());
+			modelEntity = EntityModel.of(coachLoserView,
 					linkTo(methodOn(ClientResource.class).coachLoser(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getLoser":
-			modelEntity = EntityModel.of(superbowl.getLoser(),
+			DataViews.LoserView loserView  = view.new LoserView(superbowl.getLoser());
+			modelEntity = EntityModel.of(loserView,
 					linkTo(methodOn(ClientResource.class).loser(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getLosingPoints":
-			modelEntity = EntityModel.of(superbowl.getLosingPts(),
+			DataViews.LosingPtsView losingPtsView  = view.new LosingPtsView(superbowl.getLosingPts());
+			modelEntity = EntityModel.of(losingPtsView,
 					linkTo(methodOn(ClientResource.class).losingPoints(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getMvp":
-			modelEntity = EntityModel.of(superbowl.getMvp(),
+			DataViews.MvpView mvpView  = view.new MvpView(superbowl.getMvp());
+
+			modelEntity = EntityModel.of(mvpView,
 					linkTo(methodOn(ClientResource.class).mvp(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getStadium":
-			modelEntity = EntityModel.of(superbowl.getStadium(),
+			DataViews.StadiumView stadiumView  = view.new StadiumView(superbowl.getStadium());
+
+			modelEntity = EntityModel.of(stadiumView,
 					linkTo(methodOn(ClientResource.class).stadium(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getCity":
-			modelEntity = EntityModel.of(superbowl.getCity(),
+			DataViews.CityView cityView  = view.new CityView(superbowl.getCity());
+
+			modelEntity = EntityModel.of(cityView,
 					linkTo(methodOn(ClientResource.class).city(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getState":
-			modelEntity = EntityModel.of(superbowl.getState(),
+			DataViews.StateView stateView  = view.new StateView(superbowl.getState());
+
+			modelEntity = EntityModel.of(stateView,
 					linkTo(methodOn(ClientResource.class).state(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getScore":
-			modelEntity = EntityModel.of("" + superbowl.getWinningPts() + " - " + superbowl.getLosingPts(),
+			DataViews.ScoreView scoreView  = view.new ScoreView(superbowl.getWinningPts(), superbowl.getLosingPts());
+
+			modelEntity = EntityModel.of(scoreView,
 					linkTo(methodOn(ClientResource.class).score(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getPointDifference":
-			modelEntity = EntityModel.of(superbowl.getPointDifference(),
+			DataViews.PointDifferenceView pointDifferenceView  = view.new PointDifferenceView(superbowl.getPointDifference());
+
+			modelEntity = EntityModel.of(pointDifferenceView,
 					linkTo(methodOn(ClientResource.class).pointDifference(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getReferee":
-			modelEntity = EntityModel.of(superbowl.getReferee(),
+			DataViews.RefereeView refereeView  = view.new RefereeView(superbowl.getReferee());
+
+			modelEntity = EntityModel.of(refereeView,
 					linkTo(methodOn(ClientResource.class).referee(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
 			break;
 			
 		case "getUmpire":
-			modelEntity = EntityModel.of(superbowl.getUmpire(),
+			DataViews.UmpireView umpireView  = view.new UmpireView(superbowl.getUmpire());
+
+			modelEntity = EntityModel.of(umpireView,
 					linkTo(methodOn(ClientResource.class).umpire(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			
