@@ -23,7 +23,7 @@ public class ClientResource {
 	/*
 	 ******** Routes********
 	*/
-	/** route for all super bowls */
+	
 	@GetMapping("/superbowls")
 	public ResponseEntity<?> all(){
 		return clientService.allSuperbowls();

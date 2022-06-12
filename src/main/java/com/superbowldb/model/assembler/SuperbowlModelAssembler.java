@@ -75,7 +75,7 @@ public class SuperbowlModelAssembler implements RepresentationModelAssembler<Sup
 			
 		case "getWinningPoints":
 			DataViews.WinningPtsView winningPointsView  = view.new WinningPtsView(superbowl.getWinningPts());
-			modelEntity = EntityModel.of(superbowl.getWinningPts(),
+			modelEntity = EntityModel.of(winningPointsView,
 					linkTo(methodOn(ClientResource.class).winningPoints(superbowl.getSbNumber())).withSelfRel(),
 					singleLink, allLink);
 			

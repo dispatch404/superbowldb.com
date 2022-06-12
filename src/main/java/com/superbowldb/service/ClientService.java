@@ -28,7 +28,6 @@ public class ClientService {
 		this.assembler = assembler;
 	}
 	
-	
 	public ResponseEntity<?> singleSuperbowl(int id) {
 		Superbowl sb = superbowlRepository.findById(id)
 				.orElseThrow(() -> new SuperbowlNotFoundException(id));
