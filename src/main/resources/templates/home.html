@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<link rel="shortcut icon" th:href= "@{/images/favicon.ico}" type="images/x-icon">
+	<title>Superbowl Api</title>
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<script type="text/javascript" th:src="@{/scripts/script.js}"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<img th:src="@{images/logo.png}" alt="Superbowl API"/>
+		</header>
+		<div id="content">
+			<section>
+				<p id="page-description">
+					<b><a id="selfLink" href="https://api.superbowldb.com">superbowldb.com</a></b>
+					is a free JSON API for Super Bowl data and statistics. The Super Bowl is the annual championship game of the National Football League.
+				</p>
+			</section>
+			<section>
+				<p id="useage-heading">USAGE</p>
+				<p> Retrieve single Super Bowl Data in JSON format for 26th Super Bowl.</p>
+				<p id="first-example"> 
+					<span id="first-example-method">GET </span>
+					<span id="first-example-link"><a href="https://api.superbowldb.com/superbowl/{26}">https://api.superbowldb.com/superbowl/{26}</a></span>
+				</p>
+				<p> Example Response : </p>
+				<div id="first-example-response">
+					<p>{ </p>
+	    			<p>   "sbNumber": 22, </p>
+	    			<p>"date": "31-Jan-88", </p>
+	    			<p>"attendance": 73302, </p>
+	    			<p>"qbWinner": "Doug Williams", </p>
+	   				<p>"coachWinner": "Joe Gibbs_", </p>
+	    			<p>"winner": "Washington Redskins", </p>
+	    			<p>"winningPts": 42, </p>
+	    			<p>"qbLoser": "John Elway", </p>
+	    			<p>"coachLoser": "Dan Reeves_", </p>
+	    			<p>"loser": "Denver Broncos", </p>
+	    			<p>"losingPts": 10, </p>
+	    			<p>"mvp": "Doug Williams", </p>
+	    			<p>"stadium": "Jack Murphy Stadium", </p>
+	    			<p>"city": "San Diego", </p>
+	    			<p>"state": "California", </p>
+	    			<p>"pointDifference": 32, </p>
+	    			<p>"referee": "Bob McElwee", </p>
+	    			<p>"umpire": "Al Conway", </p>
+	    			<p>"_links": { </p>
+	     			<pre>    "self": { </pre>
+	        		<pre>        "href": "http://localhost:8080/api/superbowl/22" </pre>
+	        		<pre>     }, </pre>
+	        		<pre>     "superbowls": { </pre>
+	           		<pre> 		  "href": "http://localhost:8080/api/superbowls" </pre>
+	       			<pre> 	  } </pre>
+	   			    <pre>} </pre>
+					<p>} </p>
+				</div>
+				
+				<p> Retrieve all Super Bowl Data.</p>
+				<p id="first-example"> 
+					<span id="first-example-method">GET </span>
+					<span id="first-example-link"><a href="https://api.superbowldb.com/superbowls">https://api.superbowldb.com/superbowls</a></span>
+				</p>
+				
+				<p> Retrieve a list of available categories.</p>
+				<p id="first-example"> 
+					<span id="first-example-method">GET </span>
+					<span id="first-example-link"><a href="https://api.superbowldb.com/catergories">https://api.superbowldb.com/catergories</a></span>
+				</p>
+				
+				<p> Retrieve a desired catergory data for a single Super Bowl</p>
+				<p id="first-example"> 
+					<span id="first-example-method">GET </span>
+					<span id="first-example-link"><a href="#">https://api.superbowldb.com/{catergory}/{SB number}</a></span>
+				</p>
+				
+				<p id="contact-heading">Contact</p>
+				<div id="contact-form">
+					<form action="#" onsubmit="return validateForm()" method="post">
+						<input class="form-input" type="email" id="femail" name="femail" value="Enter your email" onfocus="emailFocus()" onfocusout="inputEmailFunction()"><br>
+						<div>
+							<textarea class="form-input" id="form-msg"  name="fmessage" rows="6" onfocus="msgFocus()" onfocusout="inputMsgFunction()">Tell us how to improve....</textarea>
+						</div>
+						<input class="form-input" id="form-button" type="submit" value="Send">
+					</form>
+				</div>
+
+			</section>
+		</div>
+		<footer>
+				 <b>Made by <a id="github-link" href="#">disptach404</a> in The Mount Rushmore State &#128153 .</b>
+		</footer>	
+	</div>
+</body>
+</html>
