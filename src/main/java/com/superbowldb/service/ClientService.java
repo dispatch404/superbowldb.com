@@ -1,5 +1,7 @@
 package com.superbowldb.service;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +43,23 @@ public class ClientService {
 		
 		return ResponseEntity.ok(CollectionModel.of(superbowls,
 				linkTo(methodOn(ClientService.class).allSuperbowls()).withSelfRel()));
+	}
+	
+	public List<String> getCatergories(){
+		List<String> catergories = new ArrayList<>();
+		Superbowl sb = new Superbowl();
+		Field[] fields = sb.getClass().getDeclaredFields();
+		
+		for(Field f: fields) {
+			catergories.add(f.getName().toString());
+		}
+		
+		//add "score"
+		catergories.add("score");
+		catergories.remove("sbNumber");
+		
+		
+		return catergories;
 	}
 	
 	public ResponseEntity<?> getDate(int id){
@@ -169,4 +188,5 @@ public class ClientService {
 				
 		return ResponseEntity.ok(assembler.toModel(superBowl, "getUmpire"));
 	}
+	
 }

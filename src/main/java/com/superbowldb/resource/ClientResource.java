@@ -1,5 +1,7 @@
 package com.superbowldb.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -124,4 +126,8 @@ public class ClientResource {
 		return clientService.getUmpire(id);
 	}
 	
+	@GetMapping("catergories")
+	public List<String> catergories(){
+		return clientService.getCatergories();
+	}
 }
